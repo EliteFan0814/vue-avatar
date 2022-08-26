@@ -1,6 +1,7 @@
 <template>
   <PerfectScrollbar class="configurator-scroll">
     <div class="configurator">
+      <!-- 头像形状 -->
       <SectionWrapper :title="t('label.wrapperShape')">
         <ul class="wrapper-shape">
           <li
@@ -20,7 +21,7 @@
           </li>
         </ul>
       </SectionWrapper>
-
+      <!-- 背景颜色 -->
       <SectionWrapper :title="t('label.backgroundColor')">
         <ul class="color-list">
           <li

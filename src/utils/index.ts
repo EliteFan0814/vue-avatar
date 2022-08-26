@@ -185,6 +185,7 @@ export function showConfetti() {
 }
 
 export function highlightJSON(json: string): string {
+  console.log(json, 'json')
   if (!json) {
     return ''
   }

@@ -48,9 +48,9 @@
             @close=";(downloadModalVisible = false), (imageDataURL = '')"
           />
         </div>
-
+        <!-- 彩蛋canvas -->
         <ConfettiCanvas />
-
+        <!-- 背景色块 -->
         <div class="gradient-bg">
           <div class="gradient-top"></div>
           <div class="gradient-bottom"></div>
@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import ActionBar from '@/components/ActionBar.vue'
@@ -104,7 +104,10 @@ const [avatarOption, setAvatarOption] = useAvatarOption()
 const { t } = useI18n()
 
 const colorAvatarRef = ref<VueColorAvatarRef>()
-
+console.log(colorAvatarRef.value?.avatarRef, 'xxxxx')
+onMounted(() => {
+  console.log(colorAvatarRef.value?.avatarRef, 'wwww')
+})
 function handleGenerate() {
   // 触发彩蛋
   if (Math.random() <= TRIGGER_PROBABILITY) {
@@ -138,9 +141,12 @@ const imageDataURL = ref('')
 async function handleDownload() {
   try {
     downloading.value = true
+    console.log(colorAvatarRef.value?.avatarRef, 'colorAvatarRefcolorAvatarRef')
+    // 生成头像的dom对象
     const avatarEle = colorAvatarRef.value?.avatarRef
 
     const userAgent = window.navigator.userAgent.toLowerCase()
+    // 是否是不支持的浏览器
     const notCompatible = NOT_COMPATIBLE_AGENTS.some(
       (agent) => userAgent.indexOf(agent) !== -1
     )
@@ -175,7 +181,7 @@ async function handleDownload() {
 
 const flipped = ref(false)
 const codeVisible = ref(false)
-
+// 处理不同的图片操作
 function handleAction(actionType: ActionType) {
   switch (actionType) {
     case ActionType.Undo:

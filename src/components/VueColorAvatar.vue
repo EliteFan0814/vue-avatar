@@ -35,7 +35,7 @@ interface VueColorAvatarProps {
   option: AvatarOption
   size?: number
 }
-
+// 定义props并给props默认值
 const props = withDefaults(defineProps<VueColorAvatarProps>(), {
   option: () => getRandomAvatarOption(),
   size: 280,
@@ -68,12 +68,12 @@ watchEffect(async () => {
       return ix - iix
     }
   )
-
   // const promises: Promise<string>[] = sortedList.map(async ([widgetType, opt]) => {
   //   return (
   //     await import(`../assets/widgets/${widgetType}/${opt.shape}.svg?raw`)
   //   ).default
   // })
+  console.log(sortedList, 'sortedList')
 
   const promises: Promise<string>[] = sortedList.map(
     async ([widgetType, opt]) => {
@@ -83,6 +83,7 @@ watchEffect(async () => {
       return ''
     }
   )
+  console.log(promises, 'promises')
 
   const svgRawList = await Promise.all(promises).then((raw) => {
     return raw.map((svgRaw, i) => {
@@ -100,6 +101,7 @@ watchEffect(async () => {
       `
     })
   })
+  console.log(svgRawList, 'svgRawList')
 
   svgContent.value = `
     <svg

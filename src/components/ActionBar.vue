@@ -4,7 +4,7 @@
       v-for="ac in actions"
       :key="ac.type"
       class="menu-item"
-      :class="{ disabled: ac.disabled }"
+      :class="{ disabled: ac?.disabled }"
       :title="ac.tip"
       @click="emit('action', ac.type)"
     >

@@ -1,5 +1,16 @@
-const a = {
-  b: 4,
-  d: 5,
+interface a {
+  name: string
+  height: number
 }
-const val = a?.b
+
+interface b {
+  age: number
+  width: number
+}
+
+const c: a & b = {
+  name: 'haha',
+  age: 17,
+  width: 129,
+  height: 239,
+}
